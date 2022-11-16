@@ -1,0 +1,237 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap");
+
+:root {
+  --border-radius: 10px;
+  --border-radius-btn: 5px;
+  --background-color: hsl(240, 78%, 98%);
+  --border-color: hsl(240, 78%, 93%);
+  --text-color: hsl(233, 13%, 49%);
+  --text-dark-color: hsl(232, 13%, 33%);
+  --gradient-from-color: hsl(236, 72%, 79%);
+  --gradient-to-color: hsl(237, 63%, 64%);
+  --white-color: #fff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  background-image: url(../images/bg-top.svg), url(../images/bg-bottom.svg);
+  background-repeat: no-repeat, no-repeat;
+  background-position: top right, left bottom;
+  height: 100vh;
+  margin: 0;
+}
+
+.attribution {
+  font-size: 10px;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  margin: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.header__title {
+  margin: 0;
+  font-size: 28px;
+}
+
+.header__btn {
+  display: flex;
+  align-items: center;
+  margin: 15px;
+  color: hsl(234, 14%, 74%);
+}
+
+.toggle-btn {
+  position: relative;
+  width: 45px;
+  height: 25px;
+  display: inline-block;
+  margin: 15px;
+  cursor: pointer;
+}
+
+.toggle-btn:hover {
+  opacity: 0.5;
+}
+
+.toggle-btn input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  border-radius: 20px;
+  background: linear-gradient(
+    to right,
+    var(--gradient-from-color),
+    var(--gradient-to-color)
+  );
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.toggle-slider::before {
+  position: absolute;
+  content: "";
+  width: 17px;
+  height: 17px;
+  left: 4px;
+  bottom: 4px;
+  border-radius: 50%;
+  background-color: #fff;
+  transition: all 0.2s;
+}
+
+#monthly:checked + .toggle-slider::before {
+  transform: translateX(20px);
+}
+
+.plans {
+  display: flex;
+}
+
+.cart {
+  align-items: center;
+  background-color: var(--white-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 0 40px hsl(234, 14%, 89%);
+  display: flex;
+  flex-direction: column;
+  padding: 15px 35px;
+}
+.cart.cart--active {
+  box-shadow: none;
+  transform: scale(1.1);
+  color: var(--white-color);
+  background: linear-gradient(
+    to right bottom,
+    var(--gradient-from-color),
+    var(--gradient-to-color)
+  );
+}
+.cart.cart--active .cart__btn {
+  color: var(--gradient-to-color);
+  background: none;
+  background-color: #fff;
+}
+
+.cart:not(.cart--active) {
+  width: 300px;
+  margin: 10px;
+}
+
+.cart__title {
+  font-size: 16px;
+}
+
+.cart__price {
+  color: var(--text-dark-color);
+  font-size: 60px;
+  display: flex;
+  align-items: center;
+}
+.cart--active .cart__price {
+  color: var(--white-color);
+}
+.price--sign {
+  font-size: 32px;
+  margin: 5px;
+}
+
+.cart__price.hidden {
+  display: none;
+}
+
+.cart__details {
+  width: 100%;
+  list-style: none;
+  padding: 0;
+}
+
+.cart__detail {
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+  padding: 15px;
+  font-size: 12px;
+}
+
+.cart__detail:last-child {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.cart__btn {
+  cursor: pointer;
+  border: 1px solid transparent;
+  width: 100%;
+  color: var(--white-color);
+  border-radius: var(--border-radius-btn);
+  font-family: inherit;
+  text-transform: uppercase;
+  padding: 10px;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  margin: 10px;
+  background: linear-gradient(
+    to right,
+    var(--gradient-from-color),
+    var(--gradient-to-color)
+  );
+}
+
+.cart__btn:hover {
+  border: 1px solid var(--text-dark-color);
+  background: none;
+  background-color: transparent;
+  color: var(--text-dark-color);
+}
+
+.cart--active .cart__btn:hover {
+  border: 1px solid var(--white-color);
+  background-color: transparent;
+  color: var(--white-color);
+}
+
+@media screen and (max-width: 415px) {
+  body {
+    background-size: 200px;
+    background-position: 240px 0, bottom;
+  }
+
+  .plans {
+    flex-direction: column;
+  }
+
+  .cart.cart--active {
+    box-shadow: 0 0 40px hsl(234, 14%, 89%);
+    transform: scale(1);
+    width: 300px;
+    margin: 10px;
+  }
+}
